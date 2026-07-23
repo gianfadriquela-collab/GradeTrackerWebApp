@@ -131,3 +131,30 @@ public class GradeController {
         return "redirect:/students/enter";
     }
 
+    // =====================================================================
+    // POST /students/clear   -- Reset session data (like restarting the app)
+    // =====================================================================
+    @PostMapping("/students/clear")
+    public String clearStudents(RedirectAttributes redirectAttrs) {
+        repo.clear();
+        redirectAttrs.addFlashAttribute("successMessage",
+                "All student data cleared.");
+        return "redirect:/";
+    }
+    // =====================================================================
+    // GET /report   -- Grade report table
+    //                  (was ReportPrinter.printReport(repo))
+    // =====================================================================
+    @GetMapping("/report")
+    public String viewReport(Model model) {
+        List<Student> students = repo.getAllStudents();
+        model.addAttribute("students", students);
+        model.addAttribute("hasData",  !students.isEmpty());
+
+        // Provide GradeCalculator reference for the template to call getRemarks
+        // (Thymeleaf cannot call static methods directly, so we precompute remarks)
+        // The remarks are computed in the template via a helper approach below.
+        return "report";
+    }
+
+
