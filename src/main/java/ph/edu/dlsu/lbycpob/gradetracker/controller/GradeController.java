@@ -234,8 +234,3 @@ public class GradeController {
         return "redirect:/verify";
     }
 }
-
-
-
-
-
