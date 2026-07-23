@@ -1,8 +1,6 @@
 package ph.edu.dlsu.lbycpob.gradetracker.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class StudentFormDTO {
     // ---- Identity fields ----
@@ -14,5 +12,25 @@ public class StudentFormDTO {
     @Pattern(regexp = "\\d{8}", message = "ID number must contain exactly 8 digits.")
     private String idNumber;
 
+    // ---- Lab Performance: 5 module scores (40% of grade)
+    @DecimalMin(value = "0.0", message = "Module 1 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 1 score must be 0 - 100.")
+    private double module1;
+
+    @DecimalMin(value = "0.0", message = "Module 2 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 2 score must be 0 - 100.")
+    private double module2;
+
+    @DecimalMin(value = "0.0", message = "Module 3 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 3 score must be 0 - 100.")
+    private double module3;
+
+    @DecimalMin(value = "0.0", message = "Module 4 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 4 score must be 0 - 100.")
+    private double module4;
+
+    @DecimalMin(value = "0.0", message = "Module 5 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 5 score must be 0 - 100.")
+    private double module5;
 
 }
